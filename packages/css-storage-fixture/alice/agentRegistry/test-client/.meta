@@ -9,5 +9,5 @@ PREFIX oidc:  <http://www.w3.org/ns/solid/oidc#>
 
 <http://localhost:5000/test-client>
   oidc:client_name "Demo Client" ;
-  oidc:logo_uri <https://robohash.org/https://demo-client.example/?set=set3> ;
+  oidc:logo_uri <https://robohash.org/https://demo-client.example/x?set=set3> ;
   interop:hasAccessNeedGroup <http://localhost:5000/test-client/access-needs> .

@@ -1,0 +1,13 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX interop: <http://www.w3.org/ns/solid/interop#>
+PREFIX oidc:  <http://www.w3.org/ns/solid/oidc#>
+
+<http://localhost:3000/alice/agentRegistry/ldo-react-tutorial/>
+  a interop:ApplicationRegistration;
+  interop:registeredAgent <http://localhost:3600/ldo-react-tutorial> ;
+  interop:registeredAt "2020-04-04T21:11:33.000Z"^^xsd:dateTime .
+
+<http://localhost:3600/ldo-react-tutorial>
+  oidc:client_name "LDO React Tutorial" ;
+  oidc:logo_uri <https://robohash.org/https://github.com/jaxoncreed/ldo-react-tutorial-1?set=set3> ;
+  interop:hasAccessNeedGroup <http://localhost:3600/ldo-react-tutorial/access-needs> .
