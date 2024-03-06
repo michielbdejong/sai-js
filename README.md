@@ -14,6 +14,58 @@ Modules implementing [Solid Application Interoperability Specification](https://
 | Solid Applications        | [`@janeirodigital/interop-application`](https://github.com/janeirodigital/sai-js/tree/main/packages/application)                 |
 | Solid Authorization Agent | [`@janeirodigital/interop-authorization-agent`](https://github.com/janeirodigital/sai-js/tree/main/packages/authorization-agent) |
 
+## Getting Started
+
+### Adding your Solid app to SAI
+Most existing Solid apps asks the user to authenticate with Solid OIDC and then expects to get access to the user's storage.
+To add such an app to SAI you need to do a number of things.
+
+#### Make sure your app has a client ID Document
+The Solid OIDC spec [requires](https://solidproject.org/TR/oidc#clientids-document) Solid apps to have a dereferenceable client ID document.
+When running the [development setup](#development) of this repo, you will be able to see the client ID document of [the Vuejectron app](http://localhost:3000)
+on [http://localhost:3000/acme/projectron/vue](http://localhost:3000/acme/projectron/vue) [1]. That one looks like this:
+```json
+{
+  "@context": [
+    "https://www.w3.org/ns/solid/oidc-context.jsonld",
+    {
+      "interop": "http://www.w3.org/ns/solid/interop#"
+    }
+  ]  ,
+  "client_id": "http://localhost:3000/acme/projectron/vue",
+  "client_name": "Vuejectron",
+  "logo_uri": "https://robohash.org/https://vuejectron.example/?set=set3",
+  "redirect_uris": ["http://localhost:4500/redirect"],
+  "grant_types" : ["refresh_token","authorization_code"],
+  "interop:hasAccessNeedGroup": "http://localhost:3000/acme/projectron/access-needs#need-group-pm",
+  "interop:hasAuthorizationCallbackEndpoint": "http://localhost:4500"
+}
+```
+See [this PR](https://github.com/jaxoncreed/ldo-react-tutorial-1/pull/4) for an example of how to add a Client ID Document to the LDO React Tutorial app.
+
+### Add an Authorize button
+Instead of the "Log in with your Web ID" button that we have gotten used to in Solid apps over the years, SAI-enabled apps have an 'Authorize' button.
+Your app may want to access the user's pod from the browser and/or from the server. Both need to be authorized, and the app also still needs the proof
+of possession for user authentication which Solid-OIDC requires. The user therefore needs to go through two or three dances instead of one:
+* authenticate
+* authorize frontend
+* authorize backend
+
+See https://github.com/janeirodigital/sai-js/tree/main/packages/application for an example.
+
+### Specify the Data Needs of your App
+See https://github.com/janeirodigital/sai-js/blob/main/packages/css-storage-fixture/acme/projectron/access-needs%24.ttl for an example
+
+### Register your data in the user's pod
+Before a user will be able to use your app, they need to have at least one data registry using your shapetree on their pod. [2]
+See https://github.com/janeirodigital/sai-js/blob/main/packages/css-storage-fixture/alice-work/dataRegistry/tasks/.meta for an example.
+
+### Test it
+Now you should be able to run your app alongside the development setup of this repo, and try it out!
+
+[1] [FIXME: #78](https://github.com/janeirodigital/sai-js/issues/78)
+[2] [FIXME: #80](https://github.com/janeirodigital/sai-js/issues/80)
+
 ## Development
 
 ### Docker
