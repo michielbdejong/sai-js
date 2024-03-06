@@ -17,7 +17,7 @@ Modules implementing [Solid Application Interoperability Specification](https://
 ## Getting Started
 
 ### Adding your Solid app to SAI
-Most existing Solid apps asks the user to authenticate with Solid OIDC and then expects to get access to the user's storage.
+Most existing Solid apps ask the user to authenticate with Solid OIDC and then expects to get access to the user's storage.
 To add such an app to SAI you need to do a number of things.
 
 #### Make sure your app has a client ID Document
@@ -41,7 +41,8 @@ on [http://localhost:3000/acme/projectron/vue](http://localhost:3000/acme/projec
   "interop:hasAuthorizationCallbackEndpoint": "http://localhost:4500"
 }
 ```
-See [this PR](https://github.com/jaxoncreed/ldo-react-tutorial-1/pull/4) for an example of how to add a Client ID Document to the LDO React Tutorial app.
+See [this PR](https://github.com/jaxoncreed/ldo-react-tutorial-1/pull/4/files#diff-99d5cfc323b4bb19aa60c9d5b031b00ac640c2f140b5b3412ff58b4f11c05fce)
+for an example of how to add a Client ID Document to the LDO React Tutorial app.
 
 ### Add an Authorize button
 Instead of the "Log in with your Web ID" button that we have gotten used to in Solid apps over the years, SAI-enabled apps have an 'Authorize' button.
